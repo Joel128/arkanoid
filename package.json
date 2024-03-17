@@ -1,0 +1,22 @@
+{
+  "name": "arkanoid",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "prettier --write ./**/*.{astro,js,ts,md} --plugin=prettier-plugin-astro",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.5.9",
+    "astro": "^4.5.5",
+    "typescript": "^5.4.2"
+  },
+  "devDependencies": {
+    "husky": "^9.0.11",
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0"
+  }
+}
