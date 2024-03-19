@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    
       "target": "es5",
       "sourceMap": true,
       "lib": [
@@ -8,5 +9,6 @@
       ],
       "noUnusedLocals": true,
       "module": "commonjs"
-  }
+  },
+
 }

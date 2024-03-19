@@ -1,0 +1,20 @@
+{
+    "arcade_scores": [
+        {
+            "player_name": "Player1",
+            "score": 15000
+        },
+        {
+            "player_name": "Player2",
+            "score": 25000
+        },
+        {
+            "player_name": "Player3",
+            "score": 18000
+        },
+        {
+            "player_name": "Player4",
+            "score": 30000
+        }
+    ]
+}
