@@ -2,9 +2,28 @@ const canvas: HTMLCanvasElement = document.querySelector('canvas')!;
 const ctx: CanvasRenderingContext2D = canvas.getContext('2d')!;
 let countPoints: number = 0;
 
+import dataJson from './data.json';
+let result: { arcade_scores: { player_name: string; score: number }[] } =
+    dataJson;
+console.log(result);
+const p = document.getElementById('List');
+const p2 = document.createElement('p');
+p2.style.color = 'red';
+p2.style.fontWeight = 'bold';
+p2.style.fontSize = '20px';
+p2.style.textAlign = 'center';
+p2.style.padding = '10px';
+
+for(let i = 0; i < result.arcade_scores.length; i++){
+    p2.innerHTML += result.arcade_scores[i].player_name + ' - ' + result.arcade_scores[i].score + '<br/>';
+}
+p?.appendChild(p2);
 
 const $sprite: HTMLImageElement = document.querySelector(
     '#sprite'
+) as HTMLImageElement;
+const list: HTMLImageElement = document.querySelector(
+    '#List'
 ) as HTMLImageElement;
 const $bricks: HTMLImageElement = document.querySelector(
     '#bricks'
@@ -116,13 +135,12 @@ function drawBricks(): void {
 function drawScore(): void {
     ctx.font = '20px Arial';
     ctx.fillStyle = '#fff';
-    ctx.fillText(`SCORE: ${countPoints}`,5, 50);
+    ctx.fillText(`SCORE: ${countPoints}`, 5, 50);
 }
 
 function drawUI(): void {
     ctx.fillText(`FPS: ${framesPerSec}`, 5, 30);
 }
-
 
 function collisionDetection(): void {
     for (let i: number = 0; i < brickColumnCount; i++) {
@@ -133,7 +151,6 @@ function collisionDetection(): void {
                 x > brick.x && x < brick.x + brickWidth;
             const isBallSameYAsBrick: boolean =
                 y > brick.y && y < brick.y + brickWidth;
-              
 
             if (isBallSameXAsBrick && isBallSameYAsBrick) {
                 dy = -dy;
@@ -251,4 +268,3 @@ function draw(): void {
 
 draw();
 initEvents();
-

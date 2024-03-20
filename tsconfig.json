@@ -1,14 +1,12 @@
 {
-  "compilerOptions": {
-    
-      "target": "es5",
-      "sourceMap": true,
-      "lib": [
-          "es5",
-          "dom"
-      ],
-      "noUnusedLocals": true,
-      "module": "commonjs"
-  },
-
+    "compilerOptions": {
+        "target": "es5",
+        "sourceMap": true,
+        "lib": ["es5", "dom"],
+        "noUnusedLocals": true,
+        "module": "commonjs",
+        "typeRoots": ["./node_modules/@types", "./src/@types"],
+        "resolveJsonModule": true,
+        "esModuleInterop": true
+    }
 }
