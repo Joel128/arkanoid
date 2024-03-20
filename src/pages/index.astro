@@ -1,22 +1,23 @@
 ---
 import '../styles/global.css';
-
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Arkanoid JS</title>
-	</head>
-	<body>
-		<canvas></canvas>
-		<img hidden id="sprite" src="./assets/arkanoid-sprite.png" />
-		<img hidden id="bricks" src="./assets/arkanoid-bricks.png" />
-		<div id="List"></div>
-		<script src="./main.ts"></script>
-		<script src="./data.json" type="application/json" id="datos"></script>
-	</body>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Arkanoid JS</title>
+    </head>
+    <body>
+        <canvas></canvas>
+        <img hidden id="sprite" src="./assets/arkanoid-sprite.png" />
+        <img hidden id="bricks" src="./assets/arkanoid-bricks.png" />
+        <button hidden id="saveScoreBtn" style="background-color: red;">Save Score</button>
+
+        <div id="List"></div>
+        <script src="./main.ts"></script>
+        <script src="./data.json" type="application/json" id="datos"></script>
+    </body>
 </html>

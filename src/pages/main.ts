@@ -13,9 +13,9 @@ p2.style.fontWeight = 'bold';
 p2.style.fontSize = '20px';
 p2.style.textAlign = 'center';
 p2.style.padding = '10px';
-
+p2.innerHTML = 'Arcade Scores' + '<br/><br/>';
 for(let i = 0; i < result.arcade_scores.length; i++){
-    p2.innerHTML += result.arcade_scores[i].player_name + ' - ' + result.arcade_scores[i].score + '<br/>';
+    p2.innerHTML +=(i+1) + ' - ' + result.arcade_scores[i].player_name + ' - ' + result.arcade_scores[i].score + '<br/>';
 }
 p?.appendChild(p2);
 
@@ -232,6 +232,43 @@ let msFPSPrev: number = window.performance.now() + 1000;
 const msPerFrame: number = 1000 / fps;
 let fr: number = 0;
 let framesPerSec: number = fps;
+// Añade esto al final del archivo JavaScript
+
+let gameOver: boolean = false;
+
+function showSaveScoreButton() {
+    const saveScoreBtn = document.getElementById('saveScoreBtn');
+    const playerNameInput = document.getElementById('playerNameInput');
+    if (saveScoreBtn && playerNameInput) {
+        saveScoreBtn.style.display = 'block';
+        playerNameInput.style.display = 'block';
+    }
+}
+
+function saveScore() {
+    const playerNameInput = document.getElementById('playerNameInput') as HTMLInputElement;
+    if (playerNameInput.value.trim() === '') {
+        alert('Please enter your name.');
+        return;
+    }
+    const player_name = playerNameInput.value;
+    const arcade_scores = [...result.arcade_scores, { player_name, score: countPoints }];
+    arcade_scores.sort((a, b) => b.score - a.score); // Ordena las puntuaciones de mayor a menor
+    result.arcade_scores = arcade_scores.slice(0, 10); // Limita a las 10 mejores puntuaciones
+    console.log(result); // Muestra la lista actualizada en la consola
+    // Aquí puedes guardar result en localStorage o enviarlo a un servidor
+    // Por ejemplo: localStorage.setItem('arcadeScores', JSON.stringify(result));
+}
+
+function checkGameOver() {
+    if (y + dy > canvas.height - ballRadius || y + dy > paddleY + paddleHeight) {
+        gameOver = true;
+        showSaveScoreButton();
+    }
+}
+
+
+document.getElementById('saveScoreBtn')?.addEventListener('click', saveScore);
 
 function draw(): void {
     window.requestAnimationFrame(draw);
@@ -250,8 +287,9 @@ function draw(): void {
         framesPerSec = fr;
         fr = 0;
     }
-
-    // ... render code
+    if (!gameOver) {
+        window.requestAnimationFrame(draw);
+       // ... render code
     clearCanvas();
     // hay que dibujar los elementos
     drawScore();
@@ -264,7 +302,12 @@ function draw(): void {
     collisionDetection();
     ballMovement();
     paddleMovement();
+    checkGameOver();
+    }
+
+    
 }
 
 draw();
 initEvents();
+
